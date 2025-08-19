@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.board.BoardMapper">
+
+	<select id="boardList" resultType="com.example.demo.board.BoardDto">
+		select * from board
+	</select>
+	
+	<insert id="writeOk">
+		insert into board (userid, name, title, content, writeday, readnum, gubun)
+		values (#{userid}, #{name}, #{title}, #{content}, now(), #{readnum}, #{gubun})
+	</insert>
+
+	<select id="boardContent" resultType="com.example.demo.board.BoardDto">
+		select * from board where id=#{id}
+	</select>
+</mapper>

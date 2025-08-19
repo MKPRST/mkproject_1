@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.member.MemberMapper">
+
+	<insert id="memberOk" parameterType="com.example.demo.member.MemberDto">
+		insert into member (name, userid, pwd, email, phone, address, writeday)
+		values (#{name}, #{userid}, #{pwd}, #{email}, #{phone}, #{address}, now())
+	</insert>
+
+
+	<select id="memberInfo" resultType="com.example.demo.member.MemberDto">
+  	select * from member
+  	where userid=#{userid}
+  </select>
+  
+<!--   memberInfoConfirmOk -->
+  <select id="getPwd">
+		  	select pwd from member
+		  	where userid =#{userid}
+  </select>
+  
+  
+  <!-- memberInfo의 정보변경 -->
+  <update id="chgEmail">
+  		update member set email =#{email} where userid=#{userid}
+  </update>
+  <update id="chgPhone">
+  		update member set phone =#{phone} where userid=#{userid}
+  </update>
+  <update id="chgPwd">
+  		update member set pwd=#{newPwd2} where userid=#{userid}
+  </update>
+  
+  
+  
+ <!-- mypage mypage mypage mypage mypage mypage  -->
+  <select id="mypage" resultType="HashMap">
+	  	SELECT gO.userid, gO.gcode, gO.startSigan, gO.ticketSu, gO.date, gO.price, gO.orderDay,
+	    g.title, g.goodsImg, g.goodsInfoImg  
+		from goodsOrder AS gO INNER JOIN goods AS g 
+		On gO.gcode = g.gcode
+		where gO.userid = #{userid}
+  </select>
+  
+  
+  <select id="qnaList" resultType="HashMap">
+  	select id,  content, left(writeday, 10) as writeday,  answer as ans,
+  	(select title from goods where gcode=qna.gcode) as title,
+  	(select content from qna where answer=ans and userid='admin') as adminCnt
+  	from qna 
+  	where userid=#{userid}
+  </select>
+  
+  <delete id="memberQnaDel">
+  	delete from qna where id=#{id}
+  </delete>
+  
+  
+  
+</mapper>

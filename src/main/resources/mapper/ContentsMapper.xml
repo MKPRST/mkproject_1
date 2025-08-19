@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.contents.ContentsMapper">
+
+	<select id="contentsList" resultType="com.example.demo.contents.ContentsDto">
+		select * from goods order by goodsImg
+	</select>
+	
+	<select id="contentsGoods" resultType="com.example.demo.contents.ContentsDto">
+		select id,title,location,gigan,sigan,age,price,goodsImg,writeday,gcode,goodsInfoImg,seat,startSigan
+		from goods where gcode=#{gcode}
+	</select>
+
+	<insert id="order">
+		insert into goodsOrder
+		(userid, gcode, startSigan, date, price, ticketSu, orderDay) values (#{userid}, #{gcode}, #{startSigan}, #{date}, #{price}, #{ticketSu}, now())
+	</insert>
+	
+	<insert id="qnaWriteOk" parameterType="com.example.demo.dto.QnaDto">
+		 insert into qna(userid,content,title,writeday,gcode)
+    	 values(#{userid},#{content},#{title},now(),#{gcode})
+	</insert>
+
+</mapper>
