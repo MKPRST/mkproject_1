@@ -4,6 +4,7 @@
 
 ## Skills
 
+- **Language"": Java
 - **Backend Framework**: Java Spring Boot
 - **Database**: MySQL
 - **Build Tool**: Maven
