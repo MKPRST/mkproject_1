@@ -43,12 +43,7 @@ application-*.properties
 .DS_Store
 Thumbs.db
 
-# 로그 / 임시 파일
-*.log
-*.tmp
-### Security ###
-*.key
-*.pem
-*.crt
+
+# 보안
 
 mkServer-key.pem
