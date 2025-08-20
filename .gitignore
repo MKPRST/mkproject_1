@@ -31,3 +31,24 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+
+# 민감한 설정 파일
+application.properties
+application.yml
+application-*.properties
+
+# 운영체제 불필요 파일
+.DS_Store
+Thumbs.db
+
+# 로그 / 임시 파일
+*.log
+*.tmp
+### Security ###
+*.key
+*.pem
+*.crt
+
+mkServer-key.pem
